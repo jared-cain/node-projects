@@ -1,0 +1,23 @@
+// WE CAN ALSO USE THE HTTP MODULE TO CREATE AN HTTP API
+// OR A SERVER WHOSE PRIMARY PURPOSE IS TO SERVE JSON DATA
+// API'S ARE USED TO SERVE DATA TO CLIENT APPLICATIONS
+// THESE APPLICATIONS TYPICALLY INCLUDE MOBILE APPS AND SINGLE
+// PAGE WEBSITES, BUT ANY CLIENT WHO CAN MAKE AN HTTP REQUEST
+// CAN COMMUNICATE WITH AN API
+var http = require('http');
+
+var data = require('./data/inventory');
+
+http.createServer(function(req, res){
+
+    // WHEN CREATING A JSON SERVER, ALL WE NEED TO DO IS ID
+    // THE CONTENT WE ARE RESPONDING WITH IS JSON
+    res.writeHead(200, {"Content-Type": "text/json"});
+
+    // NOW WE CAN SEND DATA BACK
+    // USE JSON STRINGIFY TO TURN OUR DATA STRING TO JSON
+    res.end(JSON.stringify(data));
+
+}).listen(3000);
+
+console.log("Listening on port 3000.")
